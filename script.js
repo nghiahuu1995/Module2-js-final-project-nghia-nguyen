@@ -1,5 +1,5 @@
 const placesLngLat = [
-  { location: "Airbnb House", latitude: 33.88, longitude: -115.9 },
+  { location: "Rental House 1", latitude: 33.88, longitude: -115.9 },
   { location: "Grand Canyon", latitude: 36.3, longitude: -112.6 },
   { location: "Santorini", latitude: 36.39, longitude: 25.46 },
   { location: "Balboa Park", latitude: 32.73, longitude: -117.14 },
@@ -40,17 +40,17 @@ const locations = [
     imgUrl:
       'https://cdn.aarp.net/content/dam/aarp/travel/national-parks/2021/09/1140-joshua-tree-hero.imgcache.rev.web.2088.1200.jpg"',
   },
-  {
-    title: "Central Park",
-    desc: "Central Park is one of the most iconic and beloved urban parks in the world. It spans approximately 843 acres (341 hectares) and offers a tranquil escape from the bustling city that surrounds it. Designed by Frederick Law Olmsted and Calvert Vaux, the park features a harmonious blend of natural landscapes, recreational facilities, and cultural attractions.",
-    imgUrl:
-      "https://lh3.googleusercontent.com/p/AF1QipNiVUQD9sw5gsmCFPtZP-cXYBXFZaSDaK_fWNZ5=s1360-w1360-h1020",
-  },
-  {
-    title: "Big Sur",
-    desc: "Big Sur is a rugged and stunning stretch of California's coastline along Highway 1. It's famous for its dramatic cliffs, redwood forests, and breathtaking ocean views. Visitors can explore state parks, hike in the wilderness, and enjoy some of California's most scenic drives. McWay Falls, Bixby Creek Bridge, and Pfeiffer Beach are popular highlights in the area.",
-    imgUrl: "https://lp-cms-production.imgix.net/2019-06/28206231.jpg",
-  },
+  // {
+  //   title: "Central Park",
+  //   desc: "Central Park is one of the most iconic and beloved urban parks in the world. It spans approximately 843 acres (341 hectares) and offers a tranquil escape from the bustling city that surrounds it. Designed by Frederick Law Olmsted and Calvert Vaux, the park features a harmonious blend of natural landscapes, recreational facilities, and cultural attractions.",
+  //   imgUrl:
+  //     "https://lh3.googleusercontent.com/p/AF1QipNiVUQD9sw5gsmCFPtZP-cXYBXFZaSDaK_fWNZ5=s1360-w1360-h1020",
+  // },
+  // {
+  //   title: "Big Sur",
+  //   desc: "Big Sur is a rugged and stunning stretch of California's coastline along Highway 1. It's famous for its dramatic cliffs, redwood forests, and breathtaking ocean views. Visitors can explore state parks, hike in the wilderness, and enjoy some of California's most scenic drives. McWay Falls, Bixby Creek Bridge, and Pfeiffer Beach are popular highlights in the area.",
+  //   imgUrl: "https://lp-cms-production.imgix.net/2019-06/28206231.jpg",
+  // },
 ];
 const Favlocation = {
   title: "Joshua Tree Park",
@@ -67,7 +67,7 @@ let images = [
 let houses = [
   {
     id: 0,
-    type: "Airbnb House",
+    type: "Rental House 1",
     dailyPrice: 249.99,
     dateAvailable: "",
     images: [
@@ -86,17 +86,27 @@ let houses = [
     dailyPrice: 349.99,
     dateAvailable: "",
     images: [
-      "https://lh3.googleusercontent.com/p/AF1QipO0D55rBXb8BP0z6M2usrZR8lV2JanLkHrqQUMm=s1360-w1360-h1020",
-      "https://lp-cms-production.imgix.net/2019-06/28206231.jpg",
-      "https://lh3.googleusercontent.com/p/AF1QipNmDUNFqDhCnLH2b2LJ5L7szKCIS0xgrxVVWDkU=s1360-w1360-h1020",
+      "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1687,w_3000,x_0,y_0/dpr_1.5/c_limit,w_3000/fl_lossy,q_auto/v1583623772/200220-mcnearney-omg-i-want-this-house-scottsdale-01_doihsu",
+      "https://www.redfin.com/blog/wp-content/uploads/2019/10/1_How-to-Set-Up-Your-Home-as-a-Rental-Property.jpg",
+      "https://www.compass.com/m/59ed7ee104705945b21336c59c1a3c4e5c6caab9_img_1_a9312/640x480.jpg",
     ],
     traits: ["🛏️ Comfy Beds", "📶 Wifi coverage", "❌ No Pet allowed"],
     desc: "Welcome to Your Dream Home Nestled in the heart of Los Angeles, home offers an ideal retreat for your next getaway. Step outside to discover your own private outdoor oasis, complete with a spacious patio or deck. Sip your morning coffee as you soak up the sunshine, or enjoy alfresco dining under the stars with friends and family.",
-    area: "On Earth",
+    area: "Arizona",
     geo: { latitude: 36.3, longitude: -112.6 },
   },
 ];
 let currentMarker;
+const btnBackToTop = document.querySelector(".btn--back-to-top");
+const bdContainer = document.querySelector(".body-container");
+
+const content = document.querySelector(".card-row");
+const ToggleBtn = document.querySelector(".mode-toggle");
+const navBar = document.querySelector(".navbar");
+const cards = document.querySelectorAll(".card");
+const exampleModal = document.getElementById("exampleModal");
+const travelBtns = document.querySelectorAll(".card-btn");
+const parentBtnEl = document.querySelector(".row_content");
 
 const input = document.querySelectorAll(".days");
 let tax = document.querySelector(".tax-price");
@@ -158,13 +168,14 @@ const activateDot = function (slideImgs, id) {
 houses.forEach((house, i) => {
   let curSlide = 1;
   let div = document.createElement("div");
-  let { id, type, dailyPrice, dateAvailable, traits, desc, area, geo } = house;
+  let { id, type, dailyPrice, dateAvailable, traits, desc, area, geo, images } =
+    house;
   let lng = geo.longitude;
   let lat = geo.latitude;
-  console.log(lat, lng);
+
   div.classList.add(`location-container-${id}`);
   div.innerHTML = `<div class="background">
-  <img class="location-${id}-images" src="assets/img/room.jpeg" alt="">
+  <img class="location-${id}-images" src=${images[0]} alt="">
   
       
   <div class="dots-location-${id} dots">
@@ -193,7 +204,7 @@ houses.forEach((house, i) => {
 `;
 
   container.appendChild(div);
-  console.log(i % 2 === 0);
+
   document
     .querySelector(`.location-container-${id}`)
     .setAttribute(
@@ -201,9 +212,9 @@ houses.forEach((house, i) => {
       `flex-direction: ${i % 2 === 0 ? "row" : "row-reverse"}`
     );
   let imgSlide = document.querySelector(`.location-${id}-images`);
-  const input = document.querySelector(`.input-field-${i}`);
+  // const input = document.querySelector(`.input-field-${i}`);
 
-  const locationDesc = document.querySelector(`.btn-detail-${id}`);
+  // const locationDesc = document.querySelector(`.btn-detail-${id}`);
   const locationDetail = document.querySelector(`.location-detail-${id}`);
 
   const dots = document.querySelector(`.dots-location-${id}`);
@@ -213,7 +224,8 @@ houses.forEach((house, i) => {
 
     let slide = +e.target.dataset.slide;
     curSlide = slide;
-    console.log(imgSlide);
+    console.log(slide, curSlide, target, images);
+    console.log(images[curSlide]);
     imgSlide.setAttribute("src", images[curSlide]);
     activateDot(curSlide, id);
   });
@@ -225,7 +237,7 @@ houses.forEach((house, i) => {
     let isDetail = e.target.classList.contains(`btn-detail-${id}`);
 
     let isViewOnMap = e.target.classList.contains(`btn-showMap-${id}`);
-    console.log(isDetail, isViewOnMap);
+
     if (isDetail) {
       if (locationDetail.classList.contains("location-detail-active")) {
         e.target.textContent = "Show More";
@@ -236,19 +248,50 @@ houses.forEach((house, i) => {
     }
 
     if (isViewOnMap) {
-      document.querySelector(".map-container").classList.add("active");
+      // document.querySelector(".map-container").classList.add("active");
+      getGEO(type);
+      document.getElementById("map").scrollIntoView({ behavior: "smooth" });
     }
-
-    getGEO(type);
   });
 });
 
 const locationName = document.querySelector(".location-type").textContent;
 
-// Dots
+ToggleBtn.addEventListener("click", () => {
+  if (!bdContainer.classList.contains("dark-mode")) {
+    ToggleBtn.innerHTML = `<i class="fa-solid fa-moon fa-lg fa-flip"></i>`;
+  } else {
+    ToggleBtn.innerHTML = `<i class="fa-regular fa-sun fa-spin fa-lg"></i>`;
+  }
+  bdContainer.classList.toggle("dark-mode");
 
-document.getElementById("map").scrollIntoView({ behavior: "smooth" });
-let modal = document.querySelector(".show-map");
-modal.addEventListener("click", function (e) {
-  document.querySelector(".map-container").classList.remove("active");
+  cards.forEach((card) => {
+    card.classList.toggle("dark-mode");
+  });
+  navBar.classList.toggle("nav-bar-dark");
+});
+btnBackToTop.addEventListener("click", function (e) {
+  navBar.scrollIntoView({ behavior: "smooth" });
+});
+travelBtns.forEach((travelBtn) =>
+  travelBtn.addEventListener("click", function (e) {})
+);
+
+locations.forEach((location) => {
+  let card = document.createElement("div");
+  card.className = "col-md-2 col-sm-12 card";
+  let content = `
+      <img
+        src="${location.imgUrl}"
+        class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">${location.title}</h5>
+        <p class="card-text">
+          ${location.desc}
+        </p>
+        <button class="btn btn-primary card-btn">Location</button>       
+      </div>
+    `;
+  card.innerHTML = content;
+  parentBtnEl.append(card);
 });

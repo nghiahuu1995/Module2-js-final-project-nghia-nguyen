@@ -11,12 +11,16 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="bootstrap.css" />
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
       integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
       crossorigin=""
     />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+<script src="https://kit.fontawesome.com/f22945cfc4.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@100..900&display=swap" rel="stylesheet">
@@ -32,6 +36,206 @@
   </head>
 
   <body>
+    <nav class="navbar bg-top ">
+      <div class="container-fluid">
+        <div class="row nav-row">
+          <div class="col col-2 col-md-2 col-sm-2 icon-group">
+            <a class="navbar-brand" href="#"><i class="fa-regular fa-compass fa-spin fa-xl"></i></a>
+  
+            <div class="home-section btn-group dropdown">
+              <button type="button" class="more-travel btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                More travel
+              </button>
+              <ul class="dropdown-menu">
+                <li class="list-group-item active" aria-current="true">An active item</li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+                <li class="list-group-item">A fourth item</li>
+                <li class="list-group-item">And a fifth one</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col col-8 col-md-6 col-sm-8 search_bar">
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+              <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+          </div>
+  
+          <div class="col col-2 col-md-2 col-sm-2 text-end btn-group">
+            <div class="mode-switch">
+              <button class="btn btn-light mode-toggle">
+                <i class="fa-solid fa-mountain-sun fa-lg"></i>
+              </button>
+            </div>
+  
+            <button type="button" class="btn-light btn-log-in" data-bs-toggle="modal" data-bs-target="#contactUsModal"
+              data-bs-whatever="">
+              <a href="email.html"><i class="fa-solid fa-envelope fa-lg fa-bounce"></i></a>
+            </button>
+            <button type="button" class="btn-light btn-sign-in" data-bs-toggle="modal" data-bs-target="#Sign-in"
+              data-bs-whatever="">
+              <i class="fa-solid fa-user fa-lg"></i>
+            </button>
+            <button class="navbar-toggler btn-light btn-sign-in" type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"><i class="fa-solid fa-bars fa-flip fa-lg"></i></span>
+            </button>
+          </div>
+  
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+                Navigation
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="email.html">Contact Us</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    More
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li>
+                      <a class="dropdown-item" href="#">Another action</a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider" />
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <form class="d-flex mt-3" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                <button class="btn btn-outline-success" type="submit">
+                  Search
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    
+    <div class="container-fluid body-container gx-3">
+      <div class="carousel-row">
+        <div class="col-2 col-md-2 col-sm-2">
+  
+        </div>
+        <div class="col-8 col-md-12 col-sm-12">
+          <div id="carouselSlider" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active" data-bs-interval="3000">
+                <img
+                  src="https://images.pexels.com/photos/255419/pexels-photo-255419.jpeg?cs=srgb&dl=pexels-pixabay-255419.jpg&fm=jpg"
+                  class="carousel-img d-block w-100" alt="..." />
+              </div>
+              <div class="carousel-item" data-bs-interval="3000">
+                <img src="https://photographylife.com/wp-content/uploads/2020/03/Ultra-Wide-Angle-Panoramas-1.jpg"
+                  class="carousel-img d-block w-100" alt="..." />
+              </div>
+              <div class="carousel-item" data-bs-interval="3000">
+                <img src="https://photographylife.com/wp-content/uploads/2020/03/Ultra-Wide-Angle-Panoramas-8.jpg"
+                  class="carousel-img d-block w-100" alt="..." />
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselSlider" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselSlider" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+        <div class="col-2 col-md-2 col-sm-2">
+  
+        </div>
+      </div>
+      <div class="gx-4 card-row">
+        <div class="col_content col-md-12 col-sm-12">
+          <div class="row row_content">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <button class="btn btn-outline-success btn--back-to-top">
+      &UpArrowBar;
+    </button>
+    <div class="modal fade" id="contactUsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Send us a message
+            </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Your email address:</label>
+                <input type="text" class="form-control" id="recipient-name" />
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Message:</label>
+                <textarea class="form-control" id="message-text"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Send message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="Sign-in" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Log in</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="username" class="col-form-label">Your username</label>
+                <input type="text" class="form-control" id="username" />
+              </div>
+              <div class="mb-3">
+                <label for="pwd" class="col-form-label">Password</label>
+                <input type="password" class="form-control" name="pwd" id="pwd" />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+              Sign in
+            </button>
+            <button type="button" class="btn btn-secondary">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
     
     <div class="main">
       <div class="page-container">
@@ -76,15 +280,17 @@
 
 
 <!-- Modal -->
-<div class="map-container">
+<div id="map"></div>
+<!-- <div class="map-container">
 
   <div id="map" class="">
     
   </div>
   <button class="btn btn-primary show-map" >Close map
   </button>
-</div>
-    <footer></footer>
+</div> -->
+
+    <footer><p>🐶(❁´◡`❁)(●'◡'●)╰(*°▽°*)╯🐶</p></footer>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
